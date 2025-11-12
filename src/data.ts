@@ -106,62 +106,59 @@ export const LECTURES: Lecture[] = [
   summary: "Überblick über Aufbau, Teile und Prüfungsprinzipien der FSP.",
   sections: [
     {
+      kind: "video",
+      title: "Video zur Lektion",
+      items: [
+        "https://www.youtube.com/embed/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
+      ]
+    },
+    {
       kind: "summary",
       title: "Aufbau der Fachsprachprüfung",
       items: [
-        "Die Fachsprachprüfung (FSP) besteht aus drei Teilen: Arzt-Patienten-Gespräch, Arzt-Arzt-Gespräch (Übergabe) und schriftlichem Teil (Arztbrief).",
-        "Im Arzt-Patienten-Gespräch verbringen wir den größten Teil der Prüfungszeit: Vorstellung, Anamnese, Empathie und Erklärung des weiteren Vorgehens.",
-        "Das Arzt-Arzt-Gespräch ist im Grunde eine kurze, strukturierte Übergabe. Viele Kandidaten machen es unnötig kompliziert und bauen dadurch Fehler ein.",
-        "Der schriftliche Teil (Arztbrief) ist eher routiniert: immer dieselbe Struktur, klarer roter Faden."
+        "1. Arzt-Patienten-Gespräch – größter Teil der Prüfungszeit: Vorstellung, Anamnese, Empathie und Erklärung des weiteren Vorgehens.",
+        "2. Arzt-Arzt-Gespräch (Übergabe) – kurze, strukturierte Übergabe; viele Kandidaten machen sie unnötig kompliziert.",
+        "3. Schriftlicher Teil (Arztbrief) – eher routiniert: immer ähnliche Struktur."
       ]
     },
     {
       kind: "summary",
       title: "Prüfungsprinzipien",
       items: [
-        "Ziel der FSP ist eine sichere Kommunikation auf Deutsch – mit Patientinnen/Patienten und Kolleginnen/Kollegen.",
-        "Wichtige Säulen der Prüfung: Sprache, medizinische Orientierungskenntnisse, Empathie und Automatisierung.",
-        "Sprache: klar, verständlich, gut strukturiert – sowohl der Patient als auch die Prüfer sollen Sie problemlos verstehen.",
-        "Orientierungskenntnisse: Basismedizin nach Leitlinien, ohne grobe fachliche Fehler.",
-        "Empathie: Mitgefühl zeigen, ohne in Mitleid oder Beileid abzurutschen.",
-        "Automatisierung: Die Zeit ist knapp, viele Formulierungen müssen automatisch abrufbar sein."
+        "1. Sprache: klare, verständliche und gut strukturierte Kommunikation.",
+        "2. Medizinische Orientierungskenntnisse: Basiswissen, um grobe fachliche Fehler zu vermeiden – Leitlinien helfen, sind aber nicht immer zwingend.",
+        "3. Empathie: Mitgefühl zeigen, ohne in Mitleid oder Beileid abzurutschen.",
+        "4. Automatisierung: Die Zeit ist knapp, wichtige Formulierungen müssen automatisch abrufbar sein."
       ]
     },
     {
       kind: "summary",
       title: "Leitlinien (kurz erklärt)",
       items: [
-        "Leitlinien sind evidenzbasierte Empfehlungen zur Diagnostik und Therapie.",
-        "S1-Leitlinie: Expertenkonsens ohne systematische Literaturrecherche.",
-        "S2-Leitlinien: strukturierte Entwicklung mit festgelegter Methodik.",
-        "S3-Leitlinie: höchste Stufe – systematische Reviews und Studien, klar definierte Algorithmen."
+        "Leitlinien sind evidenzbasierte Empfehlungen zur Diagnostik und Therapie. (Клинические рекомендации.)",
+        "S1-Leitlinie: Expertenkonsens ohne systematische Literaturrecherche. (Мнение экспертов.)",
+        "S2-Leitlinie: strukturierte Entwicklung mit festgelegter Methodik. (Более строгая методика.)",
+        "S3-Leitlinie: systematische Reviews und Studien mit klar definierten Algorithmen. (Самый высокий уровень доказательности.)"
       ]
     },
     {
       kind: "summary",
       title: "Wortschatz dieser Lektion",
       items: [
-        "Empathie – сочувствие, Mitgefühl (nicht Mitleid, nicht Beileid).",
+        "★ Empathie – сочувствие, Mitgefühl (nicht Mitleid, nicht Beileid).",
         "der Passant – прохожий.",
         "an sich – по сути, по существу.",
         "überschlau – übertrieben clever, zu kompliziert, заумно.",
         "aufweisen – проявлять, демонстрировать (z.B. Der Patient weist eine erhöhte Schmerzempfindlichkeit auf.).",
         "besitzen – владеть, обладать (формальнее als „haben“).",
-        "akute Appendizitis – острый аппендицит.",
-        "Blinddarmentzündung – воспаление des Blinddarms; umgangssprachlich verständlicher für Patienten.",
+        "★ akute Appendizitis / Blinddarmentzündung – острый аппендицит.",
         "Schmerzempfindlichkeit – болевая чувствительность.",
-        "exazerbiert – обострённый (z.B. exazerbierte COPD).",
-        "COPD – chronic obstructive pulmonary disease; chronisch obstruktive Lungenerkrankung; хроническая обструктивная болезнь лёгких (ХОБЛ).",
-        "Leitlinien – клинические Empfehlungen / Protokolle (S1–S3).",
+        "★ exazerbiert – обострённый (z.B. exazerbierte COPD).",
+        "★ COPD – chronic obstructive pulmonary disease; chronisch obstruktive Lungenerkrankung; хроническая обструктивная болезнь лёгких (ХОБЛ).",
+        "★ Leitlinien – клинические рекомендации / протоколы (S1–S3).",
         "kompakt – kurz, knapp und auf den Punkt.",
-        "auswendig lernen – учить наизусть."
-      ]
-    },
-    {
-      kind: "summary",
-      title: "Video zur Lektion",
-      items: [
-        "YouTube-Link: https://youtu.be/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
+        "auswendig lernen – учить наизусть.",
+        "★ = Fachbegriff (medizinischer Fachausdruck)."
       ]
     }
   ]
