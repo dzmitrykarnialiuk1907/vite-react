@@ -66,9 +66,13 @@ export const LECTURES: Lecture[] = [
             ru: "признать (например, диплом), как правило в форме „sich etwas anerkennen lassen“"
           },
           {
-            de: "Ausweichung",
-            ru: "отслоение от темы, уход в сторону в разговоре"
-          },
+      de: "Ausweichung",
+      ru: "уход от темы разговора"
+    },
+    {
+      de: "Ablenkung",
+      ru: "отвлечение, переключение внимания"
+    },
           { de: "erklären", ru: "объяснять, разъяснять" },
           { de: "sich Mühe geben", ru: "стараться, прилагать усилия" },
           {
