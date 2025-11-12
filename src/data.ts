@@ -2,11 +2,27 @@
 
 export type Term = { de: string; ru: string; tag?: string };
 
-export type Section = {
-  kind: "summary" | "video";
-  title: string;
-  items: string[];
-};
+export type Section =
+  | {
+      kind: "video";
+      title: string;
+      url: string;
+    }
+  | {
+      kind: "text";
+      title: string;
+      body: string;
+    }
+  | {
+      kind: "vocab";
+      title: string;
+      terms: Term[];
+    }
+  | {
+      kind: "summary";
+      title: string;
+      items: string[];
+    };
 
 export type Lecture = {
   id: string;
@@ -105,13 +121,11 @@ export const LECTURES: Lecture[] = [
     title: "Lektion 1 – Was ist die Fachsprachprüfung?",
     summary: "Überblick über Aufbau, Teile und Prüfungsprinzipien der FSP.",
     sections: [
-      {
-        kind: "video",
-        title: "Video zur Lektion",
-        items: [
-          "https://www.youtube.com/embed/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
-        ]
-      },
+     {
+  kind: "video",
+  title: "Video zur Lektion",
+  url: "https://www.youtube.com/embed/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
+},
       {
         kind: "summary",
         title: "Aufbau der Fachsprachprüfung",
