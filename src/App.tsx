@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+type Term = { de: string; ru: string; note?: string };
+
+export default function App() {
+  const [search, setSearch] = useState("");
+  const terms: Term[] = [
+    { de: "Der Magen", ru: "желудок" },
+    { de: "Die Leber", ru: "печень" },
+    { de: "Der Dickdarm", ru: "толстый кишечник" },
+    { de: "Der Dünndarm", ru: "тонкий кишечник" },
+    { de: "Der Ulcus", ru: "язва" },
+    { de: "Die Gallenblase", ru: "желчный пузырь" },
+    { de: "Die Milz", ru: "селезёнка" },
+  ];
+
+  const filtered = terms.filter(t =>
+    (t.de + " " + t.ru).toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ fontFamily: "sans-serif", padding: 20, maxWidth: 700, margin: "auto" }}>
+      <h1>Fachbegriffe Medizin 🇩🇪</h1>
+      <input
+        type="text"
+        placeholder="Begriff suchen…"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{ padding: 10, width: "100%", borderRadius: 8, border: "1px solid #ccc", marginBottom: 20 }}
+      />
+      {filtered.map((t, i) => (
+        <div key={i}
+          style={{ background: "#f8f8f8", borderRadius: 10, padding: 12, marginBottom: 8,
+                   boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+          <strong>{t.de}</strong> — {t.ru}
+        </div>
+      ))}
+    </div>
+  );
 }
-
-export default App
