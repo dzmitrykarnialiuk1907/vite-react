@@ -115,68 +115,76 @@ export const LECTURES: Lecture[] = [
   },
 
   // Заглушки для будущих лекций
- {
-    id: "lektion-1",
-    nr: 1,
-    title: "Lektion 1 – Was ist die Fachsprachprüfung?",
-    summary: "Überblick über Aufbau, Teile und Prüfungsprinzipien der FSP.",
-   sections: [
-  {
-    kind: "video",
-    title: "Video zur Lektion",
-    url: "https://www.youtube.com/embed/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
-  },
-  {
-    kind: "summary",
-    title: "Aufbau der Fachsprachprüfung",
-    items: [
-      "Die Fachsprachprüfung (FSP) besteht aus drei Teilen:",
-      "1. Arzt–Patienten–Gespräch (20–25 Minuten): Vorstellung, strukturierte Anamnese, Empathie, Verdachtsdiagnose und – je nach Bundesland – Aufklärung oder weiteres Vorgehen.",
-      "2. Arzt–Arzt–Gespräch (Übergabe, 5–10 Minuten): kurze, klare und strukturierte Fallübergabe.",
-      "3. Schriftlicher Teil – der Arztbrief (30–40 Minuten): routinierter Teil mit klarer Struktur."
-    ]
-  },
-  {
-    kind: "summary",
-    title: "Prüfungsprinzipien",
-    items: [
-      "1. Sprache: Die FSP ist eine Sprachprüfung. Wichtig ist klare, verständliche und strukturierte Kommunikation.",
-      "2. Medizinische Orientierung: Basiswissen reicht aus, Ziel ist das Vermeiden grober Fehler.",
-      "3. Empathie: Auf Aussagen reagieren, Mitgefühl zeigen, aber nicht in Mitleid oder Beileid abrutschen.",
-      "4. Automatisierung: Die Zeit ist knapp – wichtige Formulierungen sollten automatisch abrufbar sein."
-    ]
-  },
-  {
-    kind: "summary",
-    title: "Leitlinien (kurz erklärt)",
-    items: [
-      "S1-Leitlinie: Expertenkonsens ohne systematische Literaturrecherche.",
-      "S2-Leitlinie: strukturierte Entwicklung mit festgelegter Methodik.",
-      "S3-Leitlinie: höchste Stufe – systematische Reviews und Studien mit klar definierten Algorithmen."
-    ]
-  },
-  {
-    kind: "summary",
-    title: "Wortschatz dieser Lektion",
-    items: [
-      "**die Empathie** – сочувствие, Mitgefühl (не Mitleid, не Beileid).",
-      "**der Passant** – прохожий.",
-      "**an sich** – по сути, по существу.",
-      "**überschlau** – слишком заумно.",
-      "**aufweisen** – проявлять, демонстрировать.",
-      "**besitzen** – владеть, обладать (формальнее чем „haben“).",
-      "**die akute Appendizitis** / **die Blinddarmentzündung** – острый аппендицит.",
-      "**die Schmerzempfindlichkeit** – болевая чувствительность.",
-      "**exazerbiert*** – обострённый.",
-      "**die COPD*** – хроническая обструктивная болезнь лёгких.",
-      "**die Leitlinie** – клиническая рекомендация.",
-      "kompakt – кратко и по делу.",
-      "auswendig lernen – учить наизусть.",
-      "* = Fachbegriff."
-    ]
-  }
-]
-  },
+{
+  id: "lektion-1",
+  nr: 1,
+  title: "Lektion 1 – Was ist die Fachsprachprüfung?",
+  summary: "Überblick über Aufbau, Teile und Prüfungsprinzipien der FSP.",
+  sections: [
+    {
+      kind: "video",
+      title: "Video zur Lektion",
+      url: "https://www.youtube.com/embed/Rvb_WGsUbKU?si=JhOErChQSR9eeHJ6"
+    },
+
+    {
+      kind: "summary",
+      title: "Aufbau der Fachsprachprüfung",
+      items: [
+        "Die Fachsprachprüfung (FSP) ist eine Sprachprüfung, bei der Ihre Kommunikationsfähigkeit mit Patienten und Kollegen überprüft wird.",
+        "Die Prüfung besteht aus drei Teilen:",
+
+        "1. Arzt–Patienten–Gespräch (20–25 Minuten): größter und wichtigster Teil; Aufgaben: Vorstellung, strukturierte Anamnese, Empathie*, Symptome einordnen, Verdachtsdiagnose stellen, je nach Bundesland weiteres Vorgehen oder Aufklärungsgespräch.",
+
+        "2. Arzt–Arzt–Gespräch (5–10 Minuten): kurze, strukturierte Übergabe; eigentlich leicht, viele Kandidaten machen Fehler, weil sie zu kompliziert sprechen.",
+
+        "3. Schriftlicher Teil – der Arztbrief (30–40 Minuten): wenig variabel, festgelegte Struktur; wichtig ist das sichere Anwenden typischer Formulierungen."
+      ]
+    },
+
+    {
+      kind: "summary",
+      title: "Prüfungsprinzipien",
+      items: [
+        "1. Sprache: Die FSP ist eine Sprachprüfung; klare, verständliche und strukturierte Kommunikation ist entscheidend.",
+        "2. Medizinische Orientierung: Basiswissen reicht aus; Ziel ist es, grobe Fehler zu vermeiden. Beispiel: Bei Fieber + Husten eher an Pneumonie denken, nicht an akute Appendizitis*.",
+        "3. Empathie: Mitgefühl zeigen, angemessen reagieren; auf Aussagen des Patienten eingehen, nicht einfach weiterfragen.",
+        "4. Automatisierung: Die Zeit ist begrenzt; häufige Formulierungen sollten automatisiert abrufbar sein."
+      ]
+    },
+
+    {
+      kind: "summary",
+      title: "Leitlinien (kurz erklärt)",
+      items: [
+        "S1-Leitlinie: Expertenkonsens ohne systematische Literaturrecherche.",
+        "S2-Leitlinie: strukturierte Entwicklung mit definierter Methodik.",
+        "S3-Leitlinie: höchste Stufe – systematische Reviews und klare Algorithmen."
+      ]
+    },
+
+    {
+      kind: "summary",
+      title: "Wortschatz dieser Lektion",
+      items: [
+        "die Empathie* – сочувствие, Mitgefühl.",
+        "der Passant – прохожий.",
+        "an sich – по сути, по существу.",
+        "überschlau – слишком заумно.",
+        "aufweisen – проявлять, демонстрировать.",
+        "besitzen – владеть, обладать.",
+        "die akute Appendizitis* / die Blinddarmentzündung* – острый аппендицит.",
+        "die Schmerzempfindlichkeit* – болевая чувствительность.",
+        "exazerbiert* – обострённый.",
+        "die COPD* – хроническая обструктивная болезнь лёгких.",
+        "die Leitlinie – клиническая рекомендация.",
+        "kompakt – кратко и по делу.",
+        "auswendig lernen – учить наизусть.",
+        "* = medizinischer Fachbegriff"
+      ]
+    }
+  ]
+}
   {
     id: "lektion-2",
     nr: 2,
