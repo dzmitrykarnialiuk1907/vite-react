@@ -1,68 +1,48 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root{
+  --bg:#f6f3ee;              /* тёплый светлый беж */
+  --card:#ffffff;             /* карточки */
+  --ink:#1f2937;              /* тёмный текст */
+  --muted:#6b7280;            /* вторичный текст */
+  --primary:#2f6f6f;          /* приглушённый изумруд */
+  --accent:#caa66a;           /* тёплое золото (в духе флага) */
+  --ring:#e5e7eb;             /* бордеры */
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 800px at 10% -10%, #ffffff 0%, transparent 60%),
+    radial-gradient(1200px 800px at 110% 10%, #fbfaf6 0%, transparent 60%),
+    var(--bg);
+  font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
-a:hover {
-  color: #535bf2;
+a{color:var(--primary)}
+.container{
+  max-width:960px; margin:40px auto; padding:0 16px;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.h1{font-size:44px; font-weight:800; letter-spacing:.2px; margin:0 0 16px}
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0 24px}
+.tab{
+  padding:10px 14px; border:1px solid var(--ring); border-radius:999px;
+  background:#fff; color:var(--primary); cursor:pointer; font-weight:600;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.tab[aria-selected="true"]{background:var(--primary); color:#fff; border-color:transparent}
+.input{
+  width:100%; padding:12px 14px; border:1px solid var(--ring); border-radius:10px;
+  outline:none;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.card{
+  background:var(--card); border:1px solid var(--ring); border-radius:14px;
+  padding:12px 14px; margin:10px 0; box-shadow:0 1px 3px rgba(0,0,0,.04);
 }
-button:hover {
-  border-color: #646cff;
+.row{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.badge{font-size:12px; padding:4px 8px; background:#f3f4f6; border-radius:999px; color:var(--muted)}
+.toggle{appearance:none; width:44px; height:26px; border-radius:999px; background:#e5e7eb; position:relative; cursor:pointer; outline:none}
+.toggle:checked{background:var(--primary)}
+.toggle::after{
+  content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%;
+  background:#fff; transition:.2s;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+.toggle:checked::after{left:21px}
