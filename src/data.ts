@@ -2,11 +2,11 @@
 
 export type Term = { de: string; ru: string; tag?: string };
 
-export type Section =
-  | { kind: "video"; title: string; url: string }
-  | { kind: "text"; title: string; body: string }
-  | { kind: "vocab"; title: string; terms: Term[] }
-  | { kind: "summary"; title: string; items: string[] };
+export type Section = {
+  kind: "summary" | "video";
+  title: string;
+  items: string[];
+};
 
 export type Lecture = {
   id: string;
