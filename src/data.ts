@@ -184,7 +184,7 @@ export const LECTURES: Lecture[] = [
       ]
     }
   ]
-}
+},
   {
     id: "lektion-2",
     nr: 2,
