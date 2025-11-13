@@ -77,9 +77,11 @@ function SectionView({ s }: { s: Section }) {
         <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
           {s.items.map((x, i) => (
-            <li key={i} style={{ margin: "4px 0" }}>
-              {x}
-            </li>
+            <li
+  key={i}
+  style={{ margin: "4px 0" }}
+  dangerouslySetInnerHTML={{ __html: x }}
+/>
           ))}
         </ul>
       </Card>
