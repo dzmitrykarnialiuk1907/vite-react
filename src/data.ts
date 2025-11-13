@@ -133,12 +133,12 @@ export const LECTURES: Lecture[] = [
       items: [
         "Die Fachsprachprüfung (FSP) ist eine Sprachprüfung, bei der Ihre Fähigkeit überprüft wird, sicher mit Patientinnen/Patienten und Kolleginnen/Kollegen zu kommunizieren.",
         "Die Prüfung besteht aus drei Teilen:",
+        
+        "<b>Arzt–Patienten–Gespräch (20–25 Minuten)</b>: größter und wichtigster Teil; Aufgaben: Vorstellung, strukturierte Anamnese, Empathie*, Symptome einordnen/zuordnen, Verdachtsdiagnose stellen, je nach Bundesland weiteres Vorgehen oder Aufklärungsgespräch führen.",
 
-        "1. Arzt–Patienten–Gespräch (20–25 Minuten): größter und wichtigster Teil; Aufgaben: Vorstellung, strukturierte Anamnese, Empathie*, Symptome einordnen/zuordnen, Verdachtsdiagnose stellen, je nach Bundesland weiteres Vorgehen oder Aufklärungsgespräch führen.",
+        "<b>Arzt–Arzt–Gespräch (5–10 Minuten)</b>: kurze, strukturierte Übergabe; eigentlich leicht, aber viele Kandidaten machen Fehler, weil sie zu kompliziert sprechen.",
 
-        "2. Arzt–Arzt–Gespräch (5–10 Minuten): kurze, strukturierte Übergabe; eigentlich leicht, aber viele Kandidaten machen Fehler, weil sie zu kompliziert sprechen.",
-
-        "3. Schriftlicher Teil – der Arztbrief (30–40 Minuten): relativ leicht und wenig variabel; wichtig ist das sichere Anwenden fester Strukturen und Formulierungen."
+        "<b>Schriftlicher Teil – der Arztbrief (30–40 Minuten)</b>: relativ leicht und wenig variabel; wichtig ist das sichere Anwenden fester Strukturen und Formulierungen."
       ]
     },
 
@@ -146,10 +146,10 @@ export const LECTURES: Lecture[] = [
       kind: "summary",
       title: "Prüfungsprinzipien",
       items: [
-        "1. Sprache: Die FSP ist eine Sprachprüfung; entscheidend sind klare, verständliche und strukturierte Aussagen.",
-        "2. Medizinische Orientierung: Basiswissen reicht aus; Ziel ist es, grobe Fehler zu vermeiden. Beispiel: Bei Fieber + Husten eher an Pneumonie denken, nicht an akute Appendizitis*.",
-        "3. Empathie: Mitgefühl zeigen und angemessen reagieren; Beispiel: Bei Schmerzen 10/10 nicht mechanisch weiterfragen, sondern zuerst Hilfe anbieten („Möchten Sie ein Schmerzmittel?“).",
-        "4. Automatisierung: Die Zeit ist knapp; wichtige Formulierungen sollten automatisiert abrufbar sein."
+        "<b>Sprache</b>: Die FSP ist eine Sprachprüfung; entscheidend sind klare, verständliche und strukturierte Aussagen.",
+        "<b>Medizinische Orientierung</b>: Basiswissen reicht aus; Ziel ist es, grobe Fehler zu vermeiden. Beispiel: Bei Fieber + Husten eher an Pneumonie denken, nicht an akute Appendizitis*.",
+        "<b>Empathie</b>: Mitgefühl zeigen und angemessen reagieren; Beispiel: Bei Schmerzen 10/10 nicht mechanisch weiterfragen, sondern zuerst Hilfe anbieten („Möchten Sie ein Schmerzmittel?“).",
+        "<b>Automatisierung</b>: Die Zeit ist knapp; wichtige Formulierungen sollten automatisiert abrufbar sein."
       ]
     },
 
@@ -157,9 +157,9 @@ export const LECTURES: Lecture[] = [
       kind: "summary",
       title: "Leitlinien (kurz erklärt)",
       items: [
-        "S1-Leitlinie*: Expertenkonsens ohne systematische Literaturrecherche (мнение группы экспертов).",
-        "S2-Leitlinie*: strukturierte Entwicklung mit definierter Methodik (более строгая методика разработки).",
-        "S3-Leitlinie*: höchste Stufe – systematische Reviews und klare Algorithmen (самый высокий уровень доказательности)."
+        "<b>S1-Leitlinie*</b>: Expertenkonsens ohne systematische Literaturrecherche (мнение группы экспертов).",
+        "<b>S2-Leitlinie*</b>: strukturierte Entwicklung mit definierter Methodik (более строгая методика разработки).",
+        "<b>S3-Leitlinie*</b>: höchste Stufe – systematische Reviews und klare Algorithmen (самый высокий уровень доказательности)."
       ]
     },
 
@@ -167,32 +167,30 @@ export const LECTURES: Lecture[] = [
       kind: "summary",
       title: "Wortschatz dieser Lektion",
       items: [
-        "die Empathie* – сочувствие, Mitgefühl; не путать с Mitleid (жалость) и Beileid (соболезнование).",
-        "der Passant – прохожий.",
-        "an sich – по сути, по существу.",
-        "überschlau – слишком заумно.",
+        "<b>die Empathie*</b> – сочувствие, Mitgefühl; не путать mit Mitleid (жалость) und Beileid (соболезнование).",
+        "<b>der Passant</b> – прохожий.",
+        "<b>an sich</b> – по сути, по существу.",
+        "<b>überschlau</b> – слишком заумно.",
 
-        "einordnen / zuordnen – относить, соотносить жалобы к диагнозу. Beispiel: „Die Beschwerden einer Krankheit richtig zuordnen.“",
+        "<b>einordnen / zuordnen</b> – относить, соотносить жалобы к диагнозу. Beispiel: „Die Beschwerden einer Krankheit richtig zuordnen.“",
 
-        "aufweisen – проявлять, демонстрировать; формальный аналог „haben“. Beispiel: „Der Patient weist eine erhöhte Schmerzempfindlichkeit auf.“",
+        "<b>aufweisen</b> – проявлять, демонстрировать; формальный аналог „haben“. Beispiel: „Der Patient weist eine erhöhte Schmerzempfindlichkeit auf.“",
 
-        "besitzen – владеть, обладать; формальное слово вместо „haben“.",
+        "<b>besitzen</b> – владеть, обладать; формальное слово вместо „haben“.",
 
-        "die akute Appendizitis* / die Blinddarmentzündung* – острый аппендицит.",
-        "die Schmerzempfindlichkeit* – болевая чувствительность.",
+        "<b>die akute Appendizitis*</b> / <b>die Blinddarmentzündung*</b> – острый аппендицит.",
+        "<b>die Schmerzempfindlichkeit*</b> – болевая чувствительность.",
 
-        "exazerbiert* – обострённый, вышедший из-под контроля.",
+        "<b>exazerbiert*</b> – обострённый, вышедший из-под контроля.",
 
-        "die COPD* – Englisch: chronic obstructive pulmonary disease; Deutsch: chronisch obstruktive Lungenerkrankung; umgangssprachlich: хроническое заболевание лёгких, при котором сужены дыхательные пути.",
+        "<b>die COPD*</b> – Englisch: chronic obstructive pulmonary disease; Deutsch: chronisch obstruktive Lungenerkrankung; umgangssprachlich: хроническое заболевание лёгких с ограничением выдоха.",
 
-        "die Leitlinie* – клиническая рекомендация / протокол.",
+        "<b>die Leitlinie*</b> – клиническая рекомендация / протокол.",
 
-        "kompakt – кратко и по делу.",
-        "auswendig lernen – учить наизусть.",
+        "<b>kompakt</b> – кратко и по делу.",
+        "<b>auswendig lernen</b> – учить наизусть.",
 
-        "der Hospitant – человек, который приходит в клинику, чтобы познакомиться с отделением und dem Team; часто используется для адаптации и улучшения языка.",
-
-        "* = medizinischer Fachbegriff"
+        "<b>der Hospitant</b> – человек, который приходит в клинику, чтобы познакомиться с отделением und dem Team."
       ]
     }
   ]
