@@ -167,30 +167,30 @@ export const LECTURES: Lecture[] = [
       kind: "summary",
       title: "Wortschatz dieser Lektion",
       items: [
-        "**die Empathie*** – сочувствие, Mitgefühl; не путать с Mitleid (жалость) и Beileid (соболезнование).",
-        "**der Passant** – прохожий.",
-        "**an sich** – по сути, по существу.",
-        "**überschlau** – слишком заумно.",
-        
-        "**einordnen / zuordnen** – относить, соотносить жалобы к диагнозу. Beispiel: „Die Beschwerden einer Krankheit richtig zuordnen.“",
+        "die Empathie* – сочувствие, Mitgefühl; не путать с Mitleid (жалость) и Beileid (соболезнование).",
+        "der Passant – прохожий.",
+        "an sich – по сути, по существу.",
+        "überschlau – слишком заумно.",
 
-        "**aufweisen** – проявлять, демонстрировать; формальный аналог „haben“. Beispiel: „Der Patient weist eine erhöhte Schmerzempfindlichkeit auf.“",
+        "einordnen / zuordnen – относить, соотносить жалобы к диагнозу. Beispiel: „Die Beschwerden einer Krankheit richtig zuordnen.“",
 
-        "**besitzen** – владеть, обладать; формальное слово вместо „haben“.",
+        "aufweisen – проявлять, демонстрировать; формальный аналог „haben“. Beispiel: „Der Patient weist eine erhöhte Schmerzempfindlichkeit auf.“",
 
-        "**die akute Appendizitis*** / **die Blinddarmentzündung*** – острый аппендицит.",
-        "**die Schmerzempfindlichkeit*** – болевая чувствительность.",
+        "besitzen – владеть, обладать; формальное слово вместо „haben“.",
 
-        "**exazerbiert*** – обострённый, вышедший из-под контроля.",
+        "die akute Appendizitis* / die Blinddarmentzündung* – острый аппендицит.",
+        "die Schmerzempfindlichkeit* – болевая чувствительность.",
 
-        "**die COPD*** – Englisch: chronic obstructive pulmonary disease; Deutsch: chronisch obstruktive Lungenerkrankung; umgangssprachlich: „хроническое заболевание лёгких, при котором сужены дыхательные пути“.",
+        "exazerbiert* – обострённый, вышедший из-под контроля.",
 
-        "**die Leitlinie*** – клиническая рекомендация / протокол.",
+        "die COPD* – Englisch: chronic obstructive pulmonary disease; Deutsch: chronisch obstruktive Lungenerkrankung; umgangssprachlich: хроническое заболевание лёгких, при котором сужены дыхательные пути.",
 
-        "**kompakt** – кратко и по делу.",
-        "**auswendig lernen** – учить наизусть.",
+        "die Leitlinie* – клиническая рекомендация / протокол.",
 
-        "**der Hospitant** – человек, который приходит в клинику, чтобы познакомиться с отделением und dem Team; часто используется для адаптации и улучшения языка.",
+        "kompakt – кратко и по делу.",
+        "auswendig lernen – учить наизусть.",
+
+        "der Hospitant – человек, который приходит в клинику, чтобы познакомиться с отделением und dem Team; часто используется для адаптации и улучшения языка.",
 
         "* = medizinischer Fachbegriff"
       ]
