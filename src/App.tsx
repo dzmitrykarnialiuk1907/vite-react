@@ -404,7 +404,42 @@ function SectionView({ s }: { s: Section }) {
 
   return null;
 }
+type Category = {
+  id: string;
+  label: string;
+  lectureIds: string[];
+};
 
+const CATEGORIES: Category[] = [
+  {
+    id: "ein",
+    label: "Einführung",
+    lectureIds: ["lektion-0", "lektion-1", "lektion-wegweiser"]
+  },
+  {
+    id: "arzt-patient",
+    label: "Arzt–Patienten–Gespräch",
+    lectureIds: [] // später füllen wir das
+  },
+  {
+    id: "arzt-arzt",
+    label: "Arzt–Arzt-Gespräch",
+    lectureIds: ["lektion-2"]
+  },
+  {
+    id: "schriftlich",
+    label: "Schriftlicher Teil",
+    lectureIds: ["lektion-3"]
+  },
+  {
+    id: "fachbegriffe",
+    label: "Fachbegriffe",
+    lectureIds: ["lektion-4"]
+  }
+];
+
+const findLectureById = (id: string): Lecture | undefined =>
+  LECTURES.find(l => l.id === id);
 export default function App() {
   const [current, setCurrent] = useState<Lecture>(LECTURES[0]);
 
