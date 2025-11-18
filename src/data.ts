@@ -1,16 +1,33 @@
-// src/data.ts
-
 export type Term = {
   de: string;          // медицинский термин (Fachbegriff)
-  deUmgang?: string;   // обычный вариант (Umgangssprache)
+  deUmgang?: string;   // обычный вариант (Umgangssprache), если есть
   ru: string;          // русский перевод/объяснение
   system?: string;     // система: Kopf, Abdomen, Lunge и т.п.
-  tag?: string;        // если хочешь ещё что-то помечать
+  tag?: string;        // доп. метка (если понадобится)
 };
 
-
+export type Section =
   | {
-      // НОВОЕ: тренажёр Fachbegriffe
+      kind: "video";
+      title: string;
+      url: string;
+    }
+  | {
+      kind: "text";
+      title: string;
+      body: string;
+    }
+  | {
+      kind: "vocab";
+      title: string;
+      terms: Term[];
+    }
+  | {
+      kind: "summary";
+      title: string;
+      items: string[];
+    }
+  | {
       kind: "trainer";
       title: string;
       terms: Term[];
@@ -23,15 +40,7 @@ export type Lecture = {
   summary?: string;
   sections: Section[];
 };
-
-export type Lecture = {
-  id: string;
-  nr: number;
-  title: string;
-  summary?: string;
-  sections: Section[];
-};
-// Общий список Fachbegriffe для тренинга и словарей
+// Общий список Fachbegriffe для Training и словарей
 export const FACHBEGRIFFE: Term[] = [
   {
     de: "die Empathie",
@@ -60,8 +69,9 @@ export const FACHBEGRIFFE: Term[] = [
     ru: "клиническая рекомендация / протокол",
     system: "Allgemein"
   }
-  // 👉 сюда потом добавишь остальные ~400 терминов в том же формате
+  // сюда потом просто допишешь остальные термины
 ];
+
 
 // ЛЕКЦИЯ 0 — VORSTELLUNG
 export const LECTURES: Lecture[] = [
