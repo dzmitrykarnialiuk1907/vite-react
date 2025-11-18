@@ -2,11 +2,21 @@
 import { useState, useEffect } from "react";
 import { LECTURES, Lecture, Section, Term } from "./data";
 
+const STAR_KEY = "starred_terms";
+
 function Card({ children }: { children: React.ReactNode }) {
   return <div className="card">{children}</div>;
 }
 
-function SectionView({ s }: { s: Section }) {
+function SectionView({
+  s,
+  starred,
+  onToggleStar
+}: {
+  s: Section;
+  starred: string[];
+  onToggleStar: (de: string) => void;
+}) {
   // Состояние для тренажёра (будет использоваться только если kind === "trainer")
   const [order, setOrder] = useState<number[]>([]);
   const [position, setPosition] = useState(0);
@@ -171,29 +181,54 @@ function SectionView({ s }: { s: Section }) {
   if (s.kind === "vocab") {
     return (
       <Card>
-        <div className="badge" style={{ marginBottom: 8 }}>
-          {s.title}
-        </div>
+        <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
-          {s.terms.map((t: Term, i: number) => (
-            <li key={i} style={{ margin: "4px 0" }}>
-              <strong>{t.de}</strong>
-              {t.deUmgang && (
-                <span style={{ marginLeft: 6 }}>
-                  {" ("}
-                  {t.deUmgang}
-                  {")"}
-                </span>
-              )}
-              {t.system && (
-                <span className="badge" style={{ marginLeft: 8 }}>
-                  {t.system}
-                </span>
-              )}
-              {" — "}
-              {t.ru}
-            </li>
-          ))}
+          {s.terms.map((t, i) => {
+            const isStarred = starred.includes(t.de);
+            return (
+              <li
+                key={i}
+                style={{
+                  margin: "4px 0",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8
+                }}
+              >
+                {/* Кнопка звёздочки */}
+                <button
+                  type="button"
+                  onClick={() => onToggleStar(t.de)}
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                    cursor: "pointer",
+                    fontSize: 18,
+                    lineHeight: 1,
+                    padding: 0
+                  }}
+                  aria-label={
+                    isStarred
+                      ? "Als schwierig entfernen"
+                      : "Als schwierig markieren"
+                  }
+                >
+                  {isStarred ? "★" : "☆"}
+                </button>
+
+                <div>
+                  <strong>{t.de}</strong>
+                  {t.tag && (
+                    <span className="badge" style={{ marginLeft: 8 }}>
+                      {t.tag}
+                    </span>
+                  )}
+                  {" — "}
+                  {t.ru}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </Card>
     );
@@ -439,6 +474,29 @@ const CATEGORIES: Category[] = [
 const findLectureById = (id: string): Lecture | undefined =>
   LECTURES.find(l => l.id === id);
 export default function App() {
+  const [starred, setStarred] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const raw = localStorage.getItem("fsp_fach_starred");
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("fsp_fach_starred", JSON.stringify(starred));
+    } catch {
+      // если localStorage недоступен — просто молча игнорируем
+    }
+  }, [starred]);
+
+  const toggleStar = (de: string) => {
+    setStarred(prev =>
+      prev.includes(de) ? prev.filter(x => x !== de) : [...prev, de]
+    );
+  };
   const [currentCategory, setCurrentCategory] = useState<Category>(
     CATEGORIES[0]
   );
@@ -512,8 +570,10 @@ export default function App() {
       {/* Секции выбранной лекции */}
       {currentLecture &&
         currentLecture.sections.map((sec, i) => (
-          <SectionView key={i} s={sec} />
-        ))}
-    </div>
-  );
-}
+          <SectionView
+    key={i}
+    s={s}
+    starred={starred}
+    onToggleStar={toggleStar}
+  />
+))}
