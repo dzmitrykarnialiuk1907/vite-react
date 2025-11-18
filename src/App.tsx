@@ -441,37 +441,81 @@ const CATEGORIES: Category[] = [
 const findLectureById = (id: string): Lecture | undefined =>
   LECTURES.find(l => l.id === id);
 export default function App() {
-  const [current, setCurrent] = useState<Lecture>(LECTURES[0]);
+  const [currentCategory, setCurrentCategory] = useState<Category>(
+    CATEGORIES[0]
+  );
+
+  const [currentLecture, setCurrentLecture] = useState<Lecture | null>(() => {
+    const firstId = CATEGORIES[0].lectureIds[0];
+    return firstId ? findLectureById(firstId) ?? null : null;
+  });
+
+  const lecturesOfCategory: Lecture[] = currentCategory.lectureIds
+    .map(id => findLectureById(id))
+    .filter((l): l is Lecture => !!l);
+
+  const handleCategoryClick = (cat: Category) => {
+    setCurrentCategory(cat);
+    const firstId = cat.lectureIds[0];
+    const lecture = firstId ? findLectureById(firstId) ?? null : null;
+    setCurrentLecture(lecture);
+  };
+
+  const handleLectureClick = (lec: Lecture) => {
+    setCurrentLecture(lec);
+  };
 
   return (
     <div className="container">
       <h1 className="h1">FSP Med-Deutsch – Kurs</h1>
 
-      {/* Вкладки — каждая Lecture теперь может быть "большой секцией" */}
-      <div className="tabs" role="tablist" aria-label="Sektionen">
-        {LECTURES.map(l => (
+      {/* ВЕРХНЯЯ СТРОКА: 5 больших разделов */}
+      <div className="tabs" role="tablist" aria-label="Hauptsektionen">
+        {CATEGORIES.map(cat => (
           <button
-            key={l.id}
+            key={cat.id}
             className="tab"
-            aria-selected={current.id === l.id}
-            onClick={() => setCurrent(l)}
+            aria-selected={currentCategory.id === cat.id}
+            onClick={() => handleCategoryClick(cat)}
           >
-            {l.title}
+            {cat.label}
           </button>
         ))}
       </div>
 
+      {/* НИЖНЯЯ СТРОКА: подпункты (конкретные лекции в разделе) */}
+      {lecturesOfCategory.length > 0 && (
+        <div
+          className="tabs"
+          role="tablist"
+          aria-label="Unterthemen"
+          style={{ marginTop: 8 }}
+        >
+          {lecturesOfCategory.map(lec => (
+            <button
+              key={lec.id}
+              className="tab"
+              aria-selected={currentLecture?.id === lec.id}
+              onClick={() => handleLectureClick(lec)}
+            >
+              {lec.title}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Краткое описание выбранной лекции */}
-      {current.summary && (
-        <div className="badge" style={{ marginBottom: 12 }}>
-          {current.summary}
+      {currentLecture?.summary && (
+        <div className="badge" style={{ marginTop: 12, marginBottom: 12 }}>
+          {currentLecture.summary}
         </div>
       )}
 
       {/* Секции выбранной лекции */}
-      {current.sections.map((sec, i) => (
-        <SectionView key={i} s={sec} />
-      ))}
+      {currentLecture &&
+        currentLecture.sections.map((sec, i) => (
+          <SectionView key={i} s={sec} />
+        ))}
     </div>
   );
 }
