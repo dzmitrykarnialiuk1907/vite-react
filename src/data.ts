@@ -1,6 +1,12 @@
 // src/data.ts
 
-export type Term = { de: string; ru: string; tag?: string };
+export type Term = {
+  de: string;          // медицинский термин (Fachbegriff)
+  deUmgang?: string;   // обычный вариант (Umgangssprache)
+  ru: string;          // русский перевод/объяснение
+  system?: string;     // система: Kopf, Abdomen, Lunge и т.п.
+  tag?: string;        // если хочешь ещё что-то помечать
+};
 
 export type Section =
   | {
@@ -22,6 +28,12 @@ export type Section =
       kind: "summary";
       title: string;
       items: string[];
+    }
+  | {
+      // НОВОЕ: тренажёр Fachbegriffe
+      kind: "trainer";
+      title: string;
+      terms: Term[];
     };
 
 export type Lecture = {
@@ -31,6 +43,45 @@ export type Lecture = {
   summary?: string;
   sections: Section[];
 };
+
+export type Lecture = {
+  id: string;
+  nr: number;
+  title: string;
+  summary?: string;
+  sections: Section[];
+};
+// Общий список Fachbegriffe для тренинга и словарей
+export const FACHBEGRIFFE: Term[] = [
+  {
+    de: "die Empathie",
+    deUmgang: "das Mitgefühl",
+    ru: "сочувствие, Mitgefühl",
+    system: "Allgemein"
+  },
+  {
+    de: "die akute Appendizitis",
+    deUmgang: "die Blinddarmentzündung",
+    ru: "острый аппендицит",
+    system: "Abdomen"
+  },
+  {
+    de: "die Schmerzempfindlichkeit",
+    ru: "болевая чувствительность",
+    system: "Allgemein"
+  },
+  {
+    de: "die COPD",
+    ru: "хроническая обструктивная болезнь лёгких",
+    system: "Lunge"
+  },
+  {
+    de: "die Leitlinie",
+    ru: "клиническая рекомендация / протокол",
+    system: "Allgemein"
+  }
+  // 👉 сюда потом добавишь остальные ~400 терминов в том же формате
+];
 
 // ЛЕКЦИЯ 0 — VORSTELLUNG
 export const LECTURES: Lecture[] = [
