@@ -277,7 +277,6 @@ function SectionView({ s }: { s: Section }) {
               backgroundColor: bgColor(statusFach),
               fontSize: 16
             }}
-            placeholder={term.de}
           />
         </div>
 
@@ -303,7 +302,6 @@ function SectionView({ s }: { s: Section }) {
                 backgroundColor: bgColor(statusUmgang),
                 fontSize: 16
               }}
-              placeholder={term.deUmgang}
             />
           </div>
         )}
