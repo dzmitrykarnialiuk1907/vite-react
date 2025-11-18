@@ -236,6 +236,24 @@ export const LECTURES: Lecture[] = [
     }
   ]
 },
+   {
+    id: "lektion-wegweiser",
+    nr: 2,
+    title: "Lektion 2 – Wegweiser: Wie nutze ich den Kurs?",
+    summary:
+      "Kurze Orientierung, wie Sie mit dem Kurs arbeiten und welche Materialien es gibt.",
+    sections: [
+      {
+        kind: "summary",
+        title: "Wegweiser",
+        items: [
+          "Empfohlene Reihenfolge: zuerst Einführung (Lektion 0–2), dann Arzt–Patienten–Gespräch, anschließend Arzt–Arzt-Gespräch und schriftlicher Teil.",
+          "Aktiv mitarbeiten: laut mitsprechen, mitschreiben, eigene Formulierungen sammeln.",
+          "Fachbegriffe regelmäßig im Training-Modul üben – am besten täglich in kleinen Einheiten."
+        ]
+      }
+    ]
+  },
   {
     id: "lektion-2",
     nr: 2,
