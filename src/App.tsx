@@ -1,16 +1,131 @@
 // src/App.tsx
-import { useState } from "react";
-import { LECTURES, Lecture, Section } from "./data";
+import { useState, useEffect } from "react";
+import { LECTURES, Lecture, Section, Term } from "./data";
 
 function Card({ children }: { children: React.ReactNode }) {
   return <div className="card">{children}</div>;
 }
 
 function SectionView({ s }: { s: Section }) {
+  // Состояние для тренажёра (будет использоваться только если kind === "trainer")
+  const [order, setOrder] = useState<number[]>([]);
+  const [position, setPosition] = useState(0);
+  const [answerFach, setAnswerFach] = useState("");
+  const [answerUmgang, setAnswerUmgang] = useState("");
+  const [statusFach, setStatusFach] = useState<"idle" | "ok" | "fail">("idle");
+  const [statusUmgang, setStatusUmgang] =
+    useState<"idle" | "ok" | "fail">("idle");
+  const [showSolution, setShowSolution] = useState(false);
+
+  useEffect(() => {
+    if (s.kind !== "trainer") return;
+    if (!s.terms.length) return;
+
+    const indices = s.terms.map((_, i) => i);
+    // Перемешиваем порядок
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    setOrder(indices);
+    setPosition(0);
+    setAnswerFach("");
+    setAnswerUmgang("");
+    setStatusFach("idle");
+    setStatusUmgang("idle");
+    setShowSolution(false);
+  }, [s]);
+
+  const normalize = (str: string) =>
+    str.trim().toLowerCase().replace(/\s+/g, " ");
+
+  const borderColor = (status: "idle" | "ok" | "fail") => {
+    if (status === "ok") return "2px solid #2e7d32"; // зелёный
+    if (status === "fail") return "2px solid #c62828"; // красный
+    return "1px solid #ccc";
+  };
+
+  const bgColor = (status: "idle" | "ok" | "fail") => {
+    if (status === "ok") return "#e8f5e9"; // светло-зелёный
+    if (status === "fail") return "#ffebee"; // светло-красный
+    return "#fff";
+  };
+
+  const handleCheck = () => {
+    if (s.kind !== "trainer") return;
+    if (!order.length) return;
+
+    const currentIndex = order[position] ?? 0;
+    const term = s.terms[currentIndex];
+
+    let stF: "idle" | "ok" | "fail" = "idle";
+    let stU: "idle" | "ok" | "fail" = "idle";
+
+    if (term.de) {
+      stF =
+        normalize(answerFach) === normalize(term.de) ? "ok" : "fail";
+    }
+    if (term.deUmgang) {
+      stU =
+        normalize(answerUmgang) === normalize(term.deUmgang)
+          ? "ok"
+          : "fail";
+    }
+
+    setStatusFach(stF);
+    setStatusUmgang(stU);
+    setShowSolution(true);
+  };
+
+  const resetAnswers = () => {
+    setAnswerFach("");
+    setAnswerUmgang("");
+    setStatusFach("idle");
+    setStatusUmgang("idle");
+    setShowSolution(false);
+  };
+
+  const handleNext = () => {
+    if (s.kind !== "trainer") return;
+    if (!order.length) return;
+
+    setPosition(prev => (prev + 1) % order.length);
+    resetAnswers();
+  };
+
+  const handlePrev = () => {
+    if (s.kind !== "trainer") return;
+    if (!order.length) return;
+
+    setPosition(prev =>
+      prev === 0 ? order.length - 1 : prev - 1
+    );
+    resetAnswers();
+  };
+
+  const handleSkip = () => {
+    if (s.kind !== "trainer") return;
+    if (!order.length) return;
+
+    setPosition(prev => {
+      if (order.length === 1) return prev;
+      let next = Math.floor(Math.random() * order.length);
+      if (next === prev) {
+        next = (prev + 1) % order.length;
+      }
+      return next;
+    });
+    resetAnswers();
+  };
+
+  // 🔹 Видео
   if (s.kind === "video") {
     return (
       <Card>
-        <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
+        <div className="badge" style={{ marginBottom: 8 }}>
+          {s.title}
+        </div>
         <div style={{ position: "relative", paddingTop: "56.25%" }}>
           <iframe
             src={s.url}
@@ -31,10 +146,13 @@ function SectionView({ s }: { s: Section }) {
     );
   }
 
+  // 🔹 Текстовый блок
   if (s.kind === "text") {
     return (
       <Card>
-        <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
+        <div className="badge" style={{ marginBottom: 8 }}>
+          {s.title}
+        </div>
         <pre
           style={{
             whiteSpace: "pre-wrap",
@@ -49,17 +167,27 @@ function SectionView({ s }: { s: Section }) {
     );
   }
 
+  // 🔹 Словарик
   if (s.kind === "vocab") {
     return (
       <Card>
-        <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
+        <div className="badge" style={{ marginBottom: 8 }}>
+          {s.title}
+        </div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
-          {s.terms.map((t, i) => (
+          {s.terms.map((t: Term, i: number) => (
             <li key={i} style={{ margin: "4px 0" }}>
               <strong>{t.de}</strong>
-              {t.tag && (
+              {t.deUmgang && (
+                <span style={{ marginLeft: 6 }}>
+                  {" ("}
+                  {t.deUmgang}
+                  {")"}
+                </span>
+              )}
+              {t.system && (
                 <span className="badge" style={{ marginLeft: 8 }}>
-                  {t.tag}
+                  {t.system}
                 </span>
               )}
               {" — "}
@@ -71,19 +199,205 @@ function SectionView({ s }: { s: Section }) {
     );
   }
 
+  // 🔹 Summary (списки, где мы уже используем HTML, <b>...)
   if (s.kind === "summary") {
     return (
       <Card>
-        <div className="badge" style={{ marginBottom: 8 }}>{s.title}</div>
+        <div className="badge" style={{ marginBottom: 8 }}>
+          {s.title}
+        </div>
         <ul style={{ margin: 0, paddingLeft: 18 }}>
           {s.items.map((x, i) => (
             <li
-  key={i}
-  style={{ margin: "4px 0" }}
-  dangerouslySetInnerHTML={{ __html: x }}
-/>
+              key={i}
+              style={{ margin: "4px 0" }}
+              dangerouslySetInnerHTML={{ __html: x }}
+            />
           ))}
         </ul>
+      </Card>
+    );
+  }
+
+  // 🔹 ТРЕНАЖЁР FACHBEGRIFFE
+  if (s.kind === "trainer") {
+    if (!s.terms.length || !order.length) {
+      return (
+        <Card>
+          <div className="badge" style={{ marginBottom: 8 }}>
+            {s.title}
+          </div>
+          <p>Keine Begriffe zum Trainieren vorhanden.</p>
+        </Card>
+      );
+    }
+
+    const currentIndex = order[position] ?? 0;
+    const term = s.terms[currentIndex];
+
+    return (
+      <Card>
+        <div className="badge" style={{ marginBottom: 8 }}>
+          {s.title}
+        </div>
+
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ marginBottom: 4 }}>Русский термин:</div>
+          <div
+            style={{
+              padding: "8px 10px",
+              borderRadius: 8,
+              border: "1px solid #ddd",
+              display: "inline-block",
+              background: "#fafafa"
+            }}
+          >
+            {term.ru}
+          </div>
+        </div>
+
+        {/* Поле для Fachbegriff */}
+        <div style={{ marginBottom: 8 }}>
+          <label style={{ display: "block", marginBottom: 4 }}>
+            Медицинский термин (Fachbegriff) на немецком:
+          </label>
+          <input
+            value={answerFach}
+            onChange={e => setAnswerFach(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === "Enter") {
+                handleCheck();
+              }
+            }}
+            style={{
+              width: "100%",
+              padding: "8px 10px",
+              borderRadius: 8,
+              border: borderColor(statusFach),
+              backgroundColor: bgColor(statusFach),
+              fontSize: 16
+            }}
+            placeholder={term.de}
+          />
+        </div>
+
+        {/* Поле для обычного варианта (Umgangssprache), если он есть */}
+        {term.deUmgang && (
+          <div style={{ marginBottom: 8 }}>
+            <label style={{ display: "block", marginBottom: 4 }}>
+              Обычный вариант (Umgangssprache) на немецком:
+            </label>
+            <input
+              value={answerUmgang}
+              onChange={e => setAnswerUmgang(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === "Enter") {
+                  handleCheck();
+                }
+              }}
+              style={{
+                width: "100%",
+                padding: "8px 10px",
+                borderRadius: 8,
+                border: borderColor(statusUmgang),
+                backgroundColor: bgColor(statusUmgang),
+                fontSize: 16
+              }}
+              placeholder={term.deUmgang}
+            />
+          </div>
+        )}
+
+        {/* Фидбэк и решение */}
+        {showSolution && (
+          <div style={{ marginBottom: 8, fontSize: 14 }}>
+            <div>
+              Правильный Fachbegriff: <strong>{term.de}</strong>
+            </div>
+            {term.deUmgang && (
+              <div>
+                Обычный вариант: <strong>{term.deUmgang}</strong>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Кнопки управления */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 8,
+            marginTop: 8
+          }}
+        >
+          <button
+            type="button"
+            onClick={handleCheck}
+            style={{
+              padding: "6px 12px",
+              borderRadius: 8,
+              border: "1px solid #1976d2",
+              background: "#1976d2",
+              color: "#fff",
+              cursor: "pointer"
+            }}
+          >
+            Проверить
+          </button>
+          <button
+            type="button"
+            onClick={handlePrev}
+            style={{
+              padding: "6px 12px",
+              borderRadius: 8,
+              border: "1px solid #ccc",
+              background: "#f5f5f5",
+              cursor: "pointer"
+            }}
+          >
+            Назад
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            style={{
+              padding: "6px 12px",
+              borderRadius: 8,
+              border: "1px solid #ccc",
+              background: "#f5f5f5",
+              cursor: "pointer"
+            }}
+          >
+            Вперёд
+          </button>
+          <button
+            type="button"
+            onClick={handleSkip}
+            style={{
+              padding: "6px 12px",
+              borderRadius: 8,
+              border: "1px solid #ccc",
+              background: "#f5f5f5",
+              cursor: "pointer"
+            }}
+          >
+            Пропустить (случайный)
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowSolution(true)}
+            style={{
+              padding: "6px 12px",
+              borderRadius: 8,
+              border: "1px dashed #999",
+              background: "#fff",
+              cursor: "pointer"
+            }}
+          >
+            Показать ответ
+          </button>
+        </div>
       </Card>
     );
   }
@@ -98,8 +412,8 @@ export default function App() {
     <div className="container">
       <h1 className="h1">FSP Med-Deutsch – Kurs</h1>
 
-      {/* Шапка с лекциями 0–4 */}
-      <div className="tabs" role="tablist" aria-label="Lektionen">
+      {/* Вкладки — каждая Lecture теперь может быть "большой секцией" */}
+      <div className="tabs" role="tablist" aria-label="Sektionen">
         {LECTURES.map(l => (
           <button
             key={l.id}
@@ -107,7 +421,7 @@ export default function App() {
             aria-selected={current.id === l.id}
             onClick={() => setCurrent(l)}
           >
-            Lektion {l.nr}
+            {l.title}
           </button>
         ))}
       </div>
@@ -115,13 +429,13 @@ export default function App() {
       {/* Краткое описание выбранной лекции */}
       {current.summary && (
         <div className="badge" style={{ marginBottom: 12 }}>
-          {current.title}: {current.summary}
+          {current.summary}
         </div>
       )}
 
       {/* Секции выбранной лекции */}
-      {current.sections.map((s, i) => (
-        <SectionView key={i} s={s} />
+      {current.sections.map((sec, i) => (
+        <SectionView key={i} s={sec} />
       ))}
     </div>
   );
