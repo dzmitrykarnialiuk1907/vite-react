@@ -8,27 +8,7 @@ export type Term = {
   tag?: string;        // если хочешь ещё что-то помечать
 };
 
-export type Section =
-  | {
-      kind: "video";
-      title: string;
-      url: string;
-    }
-  | {
-      kind: "text";
-      title: string;
-      body: string;
-    }
-  | {
-      kind: "vocab";
-      title: string;
-      terms: Term[];
-    }
-  | {
-      kind: "summary";
-      title: string;
-      items: string[];
-    }
+
   | {
       // НОВОЕ: тренажёр Fachbegriffe
       kind: "trainer";
