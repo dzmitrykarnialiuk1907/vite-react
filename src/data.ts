@@ -273,16 +273,35 @@ export const LECTURES: Lecture[] = [
     ]
   },
   {
-    id: "lektion-4",
-    nr: 4,
-    title: "Lektion 4 – Wiederholung & Prüfungssimulation",
-    summary: "In Vorbereitung.",
-    sections: [
-      {
-        kind: "summary",
-        title: "In Vorbereitung",
-        items: ["Diese Lektion wird bald hinzugefügt."]
-      }
-    ]
-  }
-];
+  id: "lektion-4",
+  nr: 4,
+  title: "Training – Fachbegriffe",
+  summary:
+    "Übersicht über die wichtigsten Fachbegriffe: alphabetisch, nach Systemen und als Training.",
+  sections: [
+    {
+      kind: "vocab",
+      title: "Fachbegriffe – alphabetisch",
+      terms: FACHBEGRIFFE.slice().sort((a, b) =>
+        a.de.localeCompare(b.de)
+      )
+    },
+    {
+      kind: "vocab",
+      title: "Fachbegriffe – nach Systemen",
+      terms: FACHBEGRIFFE.slice().sort((a, b) => {
+        const sa = a.system || "";
+        const sb = b.system || "";
+        if (sa === sb) {
+          return a.de.localeCompare(b.de);
+        }
+        return sa.localeCompare(sb);
+      })
+    },
+    {
+      kind: "trainer",
+      title: "Training – Fachbegriffe (Ru → De, Fach + Alltag)",
+      terms: FACHBEGRIFFE
+    }
+  ]
+}
